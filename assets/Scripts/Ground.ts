@@ -7,6 +7,7 @@ import {
   UITransform,
   Vec3,
 } from "cc";
+import { GameControll } from "./GameControll";
 const { ccclass, property } = _decorator;
 
 @ccclass("Ground")
@@ -38,7 +39,8 @@ export class Ground extends Component {
   public tempStartLocation2: Vec3 = new Vec3();
   public tempStartLocation3: Vec3 = new Vec3();
 
-  gameSpeed: number = 50;
+  public gameControll: GameControll = new GameControll();
+  gameSpeed: number;
 
   protected onLoad(): void {
     this.startUp();
@@ -68,6 +70,8 @@ export class Ground extends Component {
   start() {}
 
   update(deltaTime: number) {
+    this.gameSpeed = this.gameControll.speed;
+
     //place real location data into temp locations
     this.tempStartLocation1 = this.ground1.position;
     this.tempStartLocation2 = this.ground2.position;
