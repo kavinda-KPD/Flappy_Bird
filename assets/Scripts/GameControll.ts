@@ -1,5 +1,17 @@
-import { _decorator, CCInteger, Component, Node } from "cc";
+import {
+  _decorator,
+  CCInteger,
+  Component,
+  director,
+  EventKeyboard,
+  EventMouse,
+  input,
+  Input,
+  KeyCode,
+  Node,
+} from "cc";
 import { Ground } from "./Ground";
+import { Results } from "./Results";
 const { ccclass, property } = _decorator;
 
 @ccclass("GameControll")
@@ -22,9 +34,50 @@ export class GameControll extends Component {
   })
   public pipesSpeed: number = 200;
 
-  onLoad(): void {}
+  @property({
+    type: Results,
+    tooltip: "Results",
+  })
+  public results: Results;
 
-  initListener() {}
+  onLoad(): void {
+    this.initListener();
+    this.results.resetScore();
+    director.pause();
+  }
 
-  startGame() {}
+  initListener() {
+    input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
+  }
+
+  onKeyDown(event: EventKeyboard) {
+    switch (event.keyCode) {
+      case KeyCode.KEY_A:
+        this.stopGame();
+        break;
+
+      case KeyCode.KEY_S:
+        this.results.addScore();
+        break;
+
+      case KeyCode.KEY_D:
+        this.resetGame();
+        break;
+    }
+  }
+
+  startGame() {
+    this.results.hideResult();
+    director.resume();
+  }
+
+  stopGame() {
+    this.results.showResult();
+    director.pause();
+  }
+
+  resetGame() {
+    this.results.resetScore();
+    this.startGame();
+  }
 }
