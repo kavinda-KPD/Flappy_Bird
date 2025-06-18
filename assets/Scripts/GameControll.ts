@@ -15,4 +15,16 @@ export class GameControll extends Component {
     tooltip: "Game Speed",
   })
   public speed: number = 300;
+
+  @property({
+    type: CCInteger,
+    tooltip: "Pipes Speed",
+  })
+  public pipesSpeed: number = 200;
+
+  onLoad(): void {}
+
+  initListener() {}
+
+  startGame() {}
 }
