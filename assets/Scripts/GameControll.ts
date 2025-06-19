@@ -55,6 +55,14 @@ export class GameControll extends Component {
 
   initListener() {
     input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
+
+    this.node.on(
+      Node.EventType.TOUCH_START,
+      () => {
+        this.bird.fly();
+      },
+      this
+    );
   }
 
   onKeyDown(event: EventKeyboard) {
@@ -69,6 +77,7 @@ export class GameControll extends Component {
 
       case KeyCode.KEY_D:
         this.resetGame();
+        this.bird.resetBird();
         break;
     }
   }

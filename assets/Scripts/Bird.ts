@@ -15,13 +15,13 @@ export class Bird extends Component {
     type: CCFloat,
     tooltip: "jump height",
   })
-  jumpHeight: number = 3.5;
+  jumpHeight: number = 50;
 
   @property({
     type: CCFloat,
     tooltip: "jump duration",
   })
-  jumpDuration: number = 3.5;
+  jumpDuration: number = 0.3;
 
   public birdAnimation: Animation;
   public birdLocation: Vec3;
@@ -41,27 +41,20 @@ export class Bird extends Component {
   }
 
   fly() {
-    this.birdAnimation.stop;
 
+    this.birdAnimation.stop();
+
+    // Use proper tween syntax for Cocos Creator
     tween(this.node)
       .to(
         this.jumpDuration,
-        new Vec3(
-          this.node.position.x,
-          this.node.position.y + this.jumpHeight,
-          0
-        ),
         {
-          easing: "smooth",
-          onUpdate: (target: Node, ratio: number) => {
-            this.node.position = target.position;
-          },
-        }
-      )
-      .union()
-      .to(
-        this.jumpDuration,
-        new Vec3(this.node.position.x, this.node.position.y, 0),
+          position: new Vec3(
+            this.node.position.x,
+            this.node.position.y + this.jumpHeight,
+            0
+          ),
+        },
         {
           easing: "smooth",
         }
