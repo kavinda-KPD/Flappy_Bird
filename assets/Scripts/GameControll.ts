@@ -12,6 +12,7 @@ import {
 } from "cc";
 import { Ground } from "./Ground";
 import { Results } from "./Results";
+import { Bird } from "./Bird";
 const { ccclass, property } = _decorator;
 
 @ccclass("GameControll")
@@ -39,6 +40,12 @@ export class GameControll extends Component {
     tooltip: "Results",
   })
   public results: Results;
+
+  @property({
+    type: Bird,
+    tooltip: "Bird",
+  })
+  public bird: Bird;
 
   onLoad(): void {
     this.initListener();
