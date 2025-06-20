@@ -96,4 +96,8 @@ export class GameControll extends Component {
     this.results.resetScore();
     this.startGame();
   }
+
+  passPipe() {
+    this.results.addScore();
+  }
 }
