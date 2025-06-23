@@ -1,12 +1,15 @@
 import {
   _decorator,
   CCInteger,
+  Collider2D,
   Component,
+  Contact2DType,
   director,
   EventKeyboard,
   EventMouse,
   input,
   Input,
+  IPhysics2DContact,
   KeyCode,
   Node,
 } from "cc";
@@ -54,12 +57,15 @@ export class GameControll extends Component {
   })
   public bird: Bird;
 
+  public isOver: boolean = false;
+
   onLoad(): void {
     console.log("GameControll: onLoad() called");
     this.initListener();
     this.results.resetScore();
     director.pause();
     this.startGame();
+    this.isOver = true;
     console.log("GameControll: Game started");
   }
 
@@ -69,7 +75,15 @@ export class GameControll extends Component {
     this.node.on(
       Node.EventType.TOUCH_START,
       () => {
-        this.bird.fly();
+        if (this.isOver === true) {
+          this.resetGame();
+          this.bird.resetBird();
+          this.startGame();
+        }
+
+        if (this.isOver === false) {
+          this.bird.fly();
+        }
       },
       this
     );
@@ -101,12 +115,14 @@ export class GameControll extends Component {
 
   stopGame() {
     this.results.showResult();
+    this.isOver = true;
     director.pause();
   }
 
   resetGame() {
     this.results.resetScore();
     this.pipeQueue.resetPool();
+    this.isOver = false;
     this.startGame();
   }
 
@@ -116,5 +132,35 @@ export class GameControll extends Component {
 
   createPipe() {
     this.pipeQueue.addPool();
+  }
+
+  contactGroundPipe() {
+    let collider = this.bird.getComponent(Collider2D);
+
+    if (collider) {
+      collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+    }
+  }
+
+  onBeginContact(
+    selfCollider: Collider2D,
+    otherCollider: Collider2D,
+    contact: IPhysics2DContact | null
+  ) {
+    this.bird.hitSomeThing = true;
+  }
+
+  birdStuck() {
+    this.contactGroundPipe();
+
+    if (this.bird.hitSomeThing) {
+      this.stopGame();
+    }
+  }
+
+  update(deltaTime: number) {
+    if (this.isOver === false) {
+      this.birdStuck();
+    }
   }
 }
