@@ -13,6 +13,7 @@ import {
 import { Ground } from "./Ground";
 import { Results } from "./Results";
 import { Bird } from "./Bird";
+import { PipePool } from "./PipePool";
 const { ccclass, property } = _decorator;
 
 @ccclass("GameControll")
@@ -28,6 +29,12 @@ export class GameControll extends Component {
     tooltip: "Game Speed",
   })
   public speed: number = 300;
+
+  @property({
+    type: PipePool,
+    tooltip: "Pipe Pool",
+  })
+  public pipeQueue: PipePool;
 
   @property({
     type: CCInteger,
@@ -48,9 +55,12 @@ export class GameControll extends Component {
   public bird: Bird;
 
   onLoad(): void {
+    console.log("GameControll: onLoad() called");
     this.initListener();
     this.results.resetScore();
     director.pause();
+    this.startGame();
+    console.log("GameControll: Game started");
   }
 
   initListener() {
@@ -83,8 +93,10 @@ export class GameControll extends Component {
   }
 
   startGame() {
+    console.log("GameControll: startGame() called");
     this.results.hideResult();
     director.resume();
+    console.log("GameControll: Director resumed");
   }
 
   stopGame() {
@@ -94,10 +106,15 @@ export class GameControll extends Component {
 
   resetGame() {
     this.results.resetScore();
+    this.pipeQueue.resetPool();
     this.startGame();
   }
 
   passPipe() {
     this.results.addScore();
+  }
+
+  createPipe() {
+    this.pipeQueue.addPool();
   }
 }

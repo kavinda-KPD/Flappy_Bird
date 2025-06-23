@@ -77,6 +77,9 @@
       },
       {
         "__id__": 4
+      },
+      {
+        "__id__": 48
       }
     ],
     "_prefab": null,
@@ -145,6 +148,9 @@
       "__id__": 5
     },
     "speed": 300,
+    "pipeQueue": {
+      "__id__": 48
+    },
     "pipesSpeed": 200,
     "results": {
       "__id__": 32
@@ -165,13 +171,13 @@
     "_enabled": true,
     "__prefab": null,
     "ground1": {
-      "__id__": 39
+      "__id__": 38
     },
     "ground2": {
-      "__id__": 42
+      "__id__": 41
     },
     "ground3": {
-      "__id__": 45
+      "__id__": 44
     },
     "_id": "a5340S2J1B2JkInEb3TbFS"
   },
@@ -185,19 +191,19 @@
     },
     "_children": [
       {
-        "__id__": 39
+        "__id__": 38
       },
       {
-        "__id__": 42
+        "__id__": 41
       },
       {
-        "__id__": 45
+        "__id__": 44
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 48
+        "__id__": 47
       },
       {
         "__id__": 5
@@ -264,13 +270,13 @@
     "_active": true,
     "_components": [
       {
+        "__id__": 35
+      },
+      {
         "__id__": 36
       },
       {
         "__id__": 37
-      },
-      {
-        "__id__": 38
       }
     ],
     "_prefab": null,
@@ -1276,9 +1282,6 @@
     "_components": [
       {
         "__id__": 34
-      },
-      {
-        "__id__": 35
       }
     ],
     "_prefab": null,
@@ -1332,25 +1335,6 @@
       "y": 0.5
     },
     "_id": "b0Q3te4vJHt5ns1MIDrlpx"
-  },
-  {
-    "__type__": "63d55jkbN5Gy6/KiklfVfdR",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 33
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "preFabPipe": {
-      "__uuid__": "700d4f50-1e56-4ef6-b334-1b6f94b2ad2e",
-      "__expectedType__": "cc.Prefab"
-    },
-    "pipePoolHome": {
-      "__id__": 33
-    },
-    "_id": "a8WHw/5XVLUL+HrjEAROE3"
   },
   {
     "__type__": "cc.UITransform",
@@ -1432,10 +1416,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 40
+        "__id__": 39
       },
       {
-        "__id__": 41
+        "__id__": 40
       }
     ],
     "_prefab": null,
@@ -1474,7 +1458,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 39
+      "__id__": 38
     },
     "_enabled": true,
     "__prefab": null,
@@ -1496,7 +1480,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 39
+      "__id__": 38
     },
     "_enabled": true,
     "__prefab": null,
@@ -1541,10 +1525,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 43
+        "__id__": 42
       },
       {
-        "__id__": 44
+        "__id__": 43
       }
     ],
     "_prefab": null,
@@ -1583,7 +1567,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 42
+      "__id__": 41
     },
     "_enabled": true,
     "__prefab": null,
@@ -1605,7 +1589,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 42
+      "__id__": 41
     },
     "_enabled": true,
     "__prefab": null,
@@ -1650,10 +1634,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 46
+        "__id__": 45
       },
       {
-        "__id__": 47
+        "__id__": 46
       }
     ],
     "_prefab": null,
@@ -1692,7 +1676,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 45
+      "__id__": 44
     },
     "_enabled": true,
     "__prefab": null,
@@ -1714,7 +1698,7 @@
     "_objFlags": 0,
     "__editorExtras__": {},
     "node": {
-      "__id__": 45
+      "__id__": 44
     },
     "_enabled": true,
     "__prefab": null,
@@ -1768,6 +1752,25 @@
       "y": 0.5
     },
     "_id": "57Nj2dsrlPTJMHHr6qMNWn"
+  },
+  {
+    "__type__": "63d55jkbN5Gy6/KiklfVfdR",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "preFabPipe": {
+      "__uuid__": "700d4f50-1e56-4ef6-b334-1b6f94b2ad2e",
+      "__expectedType__": "cc.Prefab"
+    },
+    "pipePoolHome": {
+      "__id__": 33
+    },
+    "_id": "9bzlt5tp5H05Q1wh6kSWcO"
   },
   {
     "__type__": "cc.PrefabInfo",

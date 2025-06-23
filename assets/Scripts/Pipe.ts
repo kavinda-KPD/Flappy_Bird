@@ -32,18 +32,25 @@ export class Pipe extends Component {
   public isPassed: boolean = false;
 
   protected onLoad(): void {
-    this.game = find("GameControll").getComponent("GameControll");
+    console.log("Pipe: onLoad() called");
+    this.game = find("GameCtrl").getComponent("GameControll");
     this.pipeSpeed = this.game.pipesSpeed;
     this.initPosition();
     this.isPassed = false;
+    console.log("Pipe: Initialized with speed:", this.pipeSpeed);
   }
 
   initPosition() {
-    this.tempLocalPositionUP.x =
-      this.topPipe.getComponent(UITransform).width + this.scene.width;
+    console.log("Pipe: initPosition() called");
+    console.log("Pipe: Screen width:", this.scene.width);
+    console.log(
+      "Pipe: Top pipe width:",
+      this.topPipe.getComponent(UITransform).width
+    );
 
-    this.tempLocalPositionDOWN.x =
-      this.topPipe.getComponent(UITransform).width + this.scene.width;
+    // Position pipes just off the right edge of the screen
+    this.tempLocalPositionUP.x = this.scene.width + 50;
+    this.tempLocalPositionDOWN.x = this.scene.width + 50;
 
     let gap = random(90, 100);
     let topHeight = random(0, 450);
@@ -54,6 +61,14 @@ export class Pipe extends Component {
 
     this.bottomPipe.setPosition(this.tempLocalPositionDOWN);
     this.topPipe.setPosition(this.tempLocalPositionUP);
+
+    console.log(
+      "Pipe: Positioned at x:",
+      this.tempLocalPositionUP.x,
+      "y:",
+      this.tempLocalPositionUP.y
+    );
+    console.log("Pipe: Gap:", gap, "Top height:", topHeight);
   }
 
   start() {}
@@ -72,8 +87,13 @@ export class Pipe extends Component {
 
     if (this.isPassed === false && this.topPipe.position.x < -24.990937) {
       this.isPassed = true;
+      console.log("Pipe: Bird passed pipe at x:", this.topPipe.position.x);
       this.game.passPipe();
+      this.game.createPipe();
+    }
 
+    if (this.topPipe.position.x < -this.scene.width) {
+      console.log("Pipe: Destroying pipe at x:", this.topPipe.position.x);
       this.destroy();
     }
   }
